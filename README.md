@@ -3,6 +3,7 @@
 In this lab, you will learn:
 
 * The structure of a basic program in Java.
+* What expressions, statements and blocks are.
 * What a comment is, and how to comment in Java.
 * How to name variables, constants, classes, ...
 * How to stored and manipulate data in a variable.
@@ -167,6 +168,14 @@ The naming conventions you use will vary from project to project. In industry, m
 
 The setup above leaves `lower_snake_case` available, so if another type of identifier is added into the mix, it can be written in this style.
 
+## Expressions, Statements and Blocks
+
+An **expression** is a combination of one or more constants, variables, operators, and functions that are interpreted to **produce a value**. As a rule of thumb, something is an expression if it has an "output". For instance, `5 + 4` is an expression, whose output is `9`. Simpler yet, `5` is an expression whose value is `5`.
+
+A **statement** is a combination of elements (constants, variables, ...) that are interpreted to **carry out an encoded action or sequences of actions**. For example, the statement `int x = 5;` performs two actions: it declares an `int` variable `x` and then **assigns** the value `5` to `x`. This is a specific type of statement, called an **assignment statement**, which we'll discuss in the next section.
+
+A **block** is a sequence of statements in curly braces `{}`. In Java, anywhere that you can put a statement, you can also put a block.
+
 ## Declaration and Assignment
 
 ### Variables
@@ -222,7 +231,7 @@ class MyClass
 }
 ```
 
-A declared variable can be made to hold a specfied value with an **assignment**; this is done with `=`, the **assignment operator**. A statement which uses the assignment operator to assign a value to a variable is called an **assignment statement**.
+A declared variable can be made to hold a specfied value with an **assignment**; this is done with `=`, the **assignment operator**. A statement which uses the assignment operator to assign a value to a variable is called an **assignment statement**. Assignment statements are written out in the form `<identifier> = <expression> ;`; the value of the expression on the right is stored in the variable with the identifier on the left.
 
 ```java
 // declare myNumber
@@ -232,7 +241,28 @@ int myNumber;
 myNumber = 1;
 ```
 
-Variables can be **reassigned** whenever desired; that is, their values can be changed to a new value at any time. Variables can **never** be **redeclared**. Once a variable has been declared, it cannot be declared again. 
+Variables can be **reassigned** whenever desired; that is, their values can be changed to a new value at any time. Variables can **never** be **redeclared**. Once a variable has been declared, it cannot be declared again.
+
+A variable can be declared and assigned on the same line:
+
+```java
+// declare myVariable, assign its value to 1
+int myVariable = 1;
+```
+
+This sort of combined declaration and assignment will not work if the variable has already been declared, because variables cannot be redeclared. For instance, the following snippet would not compile:
+
+```java
+int myVariable = 1;
+int myVariable = 2;
+```
+
+But this would:
+
+```java
+int myVariable = 1;
+myVariable = 2;
+```
 
 <a name="q5"></a>**[QUESTION 5](#a5)**: Read the program below, and see if  you can determine what it does. What is printed? Try running it and see if you were correct.
 
@@ -253,13 +283,6 @@ class MyClass
 		System.out.println("My number is : " myNumber);
 	}
 }	
-```
-
-A variable can be declared and assigned on the same line:
-
-```java
-// declare myVariable, assign its value to 1
-int myVariable = 1;
 ```
 
 ### Constants
@@ -294,7 +317,7 @@ class MyClass
 
 ## Accessing Primitive Data
 
-When primitive data has been stored in a variable or constant, it generally has been saved with the intention to **access** the data later. Otherwise, why store it to begin with?
+When data has been stored in a variable or constant, it generally has been saved with the intention to **access** the data later. Otherwise, why store it to begin with?
 
 Whenever the identifier of a variable or constant is used (except on the left side of an assignment statement) it is used as a reference to the value stored in the variable.
 
@@ -351,10 +374,6 @@ Four of Java's eight primitive data types are for storing integer numbers:
 	* integer data, stored in 64 bits (8 bytes)
 	* minimum value : `-9223372036854775808`
 	* maximum value : `9223372036854775807`
-
-These integer data types can also `unsigned`, meaning they do not have a bit denoting whether they're positive or negative and are assumed to be non-negative. As a tradeoff for the loss of the ability to encode negative numbers, the maximum values double.
-
-For instance, an `unsigned byte` variable would use 8 bits (1 byte) just like a `byte` variable, but the `unsigned byte` would have a minimum value of `0` and a maximum value of `255`.
 
 Two of the remaining four primitive data types are numberical. They are not for storing integer data, but for storing **floating point** data, i.e. (positive or negative) numbers with non-whole parts. These two data types are:
 
@@ -476,7 +495,6 @@ For example, the following statement declares a variable named `pancakeString` o
 String pancakeString = "pancake";
 ```
 
-
 ## Arithmetic Operators
 
 The five basic arithmetic operations in Java are `+`, `-`, `*`, `/`, and `%`. They are used for addition, subtraction, multiplication, division and remainder respectively. If `x` and `y` are both primitive numerical variables or constants of the same type (the numberical primitives are `byte`, `short`, `int`, `long`, `float`, and `double`) then:
@@ -489,29 +507,201 @@ The five basic arithmetic operations in Java are `+`, `-`, `*`, `/`, and `%`. Th
 
 The order in which arithmetic operations are executed can be determined the same way it is in mathematics, using **PEMDAS** (if you're not sure what **PEMDAS** is, use those search engine skills). You may have noticed that exponentiation does not have an operator; it is done with a **method** from the `Math` library, which we will discuss later.
 
-<a name="q10"></a>
+<a name="q10"></a>**[QUESTION 10](#a10)**: Assume `x` and `y` are `int` variables with respective values `5` and `3`. What are the results of the following expressions:
+
+* `x + y * 5`
+* `x + (y * 5)`
+* `(x + y) * 5`
 
 ## "Shortcut" Operators
 
-<a name="q11"></a>
+For each of the arithmetic operators `+`, `-`, `*`, `/`, and `%` there is a shortcut assignment operator `+=`, `-=`, `*=`, `/=`, `%=`. These shortcut operators work as follows:
+
+* `x = x + 5;` is the same as `x += 5;`
+* `x = x - 5;` is the same as `x -= 5;`
+* `x = x * 5;` is the same as `x *= 5;`
+* `x = x / 5;` is the same as `x /= 5;`
+* `x = x % 5;` is the same as `x %= 5;`
+
+In the first example above, `x = x + 5;` takes the value of `x` before the operation, adds `5` to this value, and then assigns this new value to `x`. The shortcut `x += 5;` does exactly the same thing. In both cases, `x` gets `5` larger than it was prior. The other shortcut operators are the same, relative to the arithmetic operation they are providing a shorthand for.
+
+There are also shortcuts for **incrementation** and **decrementation**, i.e. increasing or decreasing a numerical value by 1. That is, there is a shorter way to write `x = x + 1;` and `x = x - 1;`.
+
+We could shorten `x = x + 1;` to `x += 1;` as described above, but it can be written even more concisely as `x++;` or `++x;`. Similarly, we could shorten `x = x - 1;` to `x -= 1;`, but it can be written more concisely as `x--;` or `--x;`.
 
 ## Types, Assignment, Conversion and Casting
 
-<a name="q12"></a>
+Sometimes it is necessary to convert data (particularly numerical primitive data) from one type to another. For instance, you might want to store `byte` data in `int` form. Some conversions can be carried out **implicitly**; if you store `byte` data in an `int` variable, the data is converted to `int` form without the need for anything extra on your part. For example, the following statements are perfectly valid:
+
+```java
+byte x = 5;
+int y = x;
+```
+
+Above, a `byte` variable called `x` is given the value `5`, and then that same value is stored in `int` form in the variable `y`.
+
+Not all conversions are this easy. An `int` can store `byte` data easily, because an `int` formats its data in the same way a `byte` does but an `int` is larger. Performing the converse conversion is not as easy. The statements below will not work:
+
+```java
+int x = 5;
+byte y = x;
+```
+
+The statements above do not compile because, to put it loosely, an `int` does not fit in a `byte` box. The closest we can get to performing the statements above is with a **type cast**, an explict conversion from one type to another. This is performed by putting the desired type, in parenthesis, before the value being converted:
+
+```java
+int x = 5;
+byte y = (byte) x;
+```
+
+The above takes the `int` value `5` stored in `x` and converts it to the equivalent `byte` value. Since `5` is within the bounds for a `byte`, the conversion happens without error. But `byte` data must be in the close interval `[-128, 127]`.
+
+<a name="q11"></a>**[QUESTION 11](#a11)**: Try to predict what value will be printed for `y` in the program below. Then, run the program and verify your prediction.
+
+```java
+class MyClass
+{
+	public static void main(String[] args)
+	{
+		int x = 128;
+		byte y = (byte) x;
+		
+		System.out.println("y has value : " + y);
+	}
+}
+```
+
+The table below lists each primitive data type (in the left column) and the types of values that can be accepted (i.e. implicitly converted) for storage in that data type. As a rule of thumb, the "more complex" data types can store the "less complex" ones without any need for explicit conversion, while the converse is not true. In other words, upgrading data types does not require type casting, but upgrading them does.
+
+**TYPE**  | **ACCEPTED TYPES**
+:-------: | :----------------:
+`byte`    | `byte`
+`short`   | `short`, `byte`
+`int`     | `int`, `short`, `byte`, `char`
+`long`    | `long`, `int`, `short`, `byte`, `char`
+`float`   | `float`, `long`, `int`, `short`, `byte`, `char`
+`double`  | `double`, `float`, `long`, `int`, `short`, `byte`, `char`
+`boolean` | `boolean`
+`char`    | `char`
+
+As the table above denotes, storing `byte` data in a `short` variable would not require type casting, but storing `short` data in a `byte` variable would require casting. One oddity of the implicit conversions above is that an `int` can store `char` data implicitly. This is because `char` data is actually stored in integer form (see [Unicode](https://en.wikipedia.org/wiki/Unicode)).
+
+In Unicode, the digits and the english alphabet are all congiguous (i.e. in a row) integers. The digits `0` through `9` are the integers `48` through `57`. The capital letters `A` through `Z` are the integers `65` through `90`, and the lowercase letters `a` through `z` are the integers `97` through `122`.
+
+## The `+` Operator, Strings, and Polymorphism
+
+**Polymorphism** is a key concept in Object Oriented Programming. We will be discussing polymorphism much more in future labs. But, let's discuss it briefly now with the `+` operator as an example.
+
+When broken into its greek roots, "poly" and "morph", "polymorphism" essentially means "many forms". In programming, an entity is said to be polymorphic if it can more than one form, or have more than one meaning depending on context.
+
+The `+` operator is polymorphic. It behaves differently depending on the types of its operands. We already know how it behaves with primitive numerical inputs; this is already polymorphism, as it returns outputs in different data types depending on the types of its operands. 
+
+The polymorphic behavior of the `+` operator is more easily seen in how it behaves with `String` operands. Any data with a defined way to be converted to `String` form can be added to a `String`, and this will result in **concatenation**. That is, if one of the inputs for the `+` operator is a `String`, it performs a **different operation** that it would if they were all numerical primitives. For instance, `50 + "elephants"` results in the `String` value `"50elephants"`.
+
+<a name="q12"></a>**[QUESTION 12](#a12)**: Consider the following statements. Give that addition is evaluated from left to right, predict what should be printed by each one. Then, create a program to test your predictions.
+
+```java
+System.out.println( 5 + " elephants" );
+System.out.println( 5 + 6 + " elephants" );
+System.out.println( 5 + (6 + " elephants") );
+```
+
+## Arithmetic Operations (Again)
+
+The arithmetic operations are **all** polymorphic in how the perform calculations with numerical primitives; it's just less obvious than it is with `String` data because it's easy to think of all numbers as just numbers, and not pay attention to how the number is encoded in binary.
+
+We will not dwell on the binary representations of the numerical data types here; you will cover that in future classes and/or do some independent research on the subject. But it is important to note that the numerical primitives store their contained data in different formats. Specifically, the floating point types `float` and `double` use one format, while the integer types `byte`, `short`, `int` and `long` use a different format.
+
+When an operation is performed with two primitive numbers, the operation depends on the types of the two numbers. For instance, addition with two `int`s is a different operation than addition with two `float`s, because the data is stored in a different format and must therefore be interpreted differently and used differently in calculations.
+
+In the snippet below, the first multiplication is **floating point multiplication**, while the second is **integer multiplication**. While numerically these operations appear identical, the bitwise calculations being performed under the hood are very different.
+
+```java
+class MyClass
+{
+	public static void main(String[] args)
+	{
+		float x = 2.5f;
+		float y = 3.3f;
+		float z = x * y;
+		
+		int a = 2;
+		int b = 3;
+		int c = a * b;
+	}
+}
+```
+
+The built-in operations in Java result in data whose type depends on the types of the inputs. In the snippet above, `a * b` is an `int` because `a` and `b` are both `int`s. Similarly, `x * y` is a `float` because `x` and `y` are both `float`s.
+
+But what happens when you mix data types in an operation? What if, in the snippet above, the operation `x * a` was done to mulitiply a `float` with an `int`? Integer multiplication cannot be done with floating point data, nor can floating point multiplication be done with integer data. But, if you were to use the expression `x * a`, you would get neither a syntax error nor a run error.
+
+When the built-in arithmetic operations are used with integer and floating point operands, the integer operands are implicitly converted to floating point form. This might make sense intuitively; any integer can also be represented as a floating point number, but the converse is not true. For example, `1` could be represented as `1.0f`, but `2.5f` cannot be written in integer form because it is not an integer.
+
+So, if you perform an operation with an integer operand and a floating point operand, the result is a floating point number. What if you want to store that number as an integer? You can do so, but with a cost: loss of precision.
+
+In the snippet below, a `float` with value `2.6f` is multiplied by an `int` with value `3`. The result is a `float` with value `7.8f`. This result is then cast as an `int`. Notice that `7.8` is not an integer. So what happens? The answer is: the `.8` is truncated; the result is rounded down to the integer value `7`.
+
+```java
+float x = 2.6f;
+int y = 3;
+
+int z = (int) (x * y);
+```
+
+Most of the arithmetic operators result in an output that is approximately the same with different operand types. For instance, the output of `2.0f * 3.0f` is numerically approximately equal to `2 * 3` (though the results are encoded differently).
+
+This is not true for the division operation! Integer division (i.e. division performed with `byte`, `short`, `int`, and `long` data) results in an integer output (rounded down). For instance, `5 / 2` results in `2`, not `2.5`. If you wish to divide `5` by `2` using floating point division, you must make at least one of the operands a floating point type. For instance, `5.0 / 2` would perform floating point division, because the numerator `5.0` is a `double` literal. With variables, performing floating point division on integer data looks like this:
+
+```java
+int x = 5;
+int y = 2;
+
+// integer division
+int z1 = x / y;
+
+// floating point division
+float z2 = (float) x / y;
+
+// integer division, then float cast
+float z3 = (float) (x / y);
+
+System.out.println("z1 is " + z1);
+System.out.println("z2 is " + z2);
+System.out.println("z3 is " + z3);
+```
+
+Note that in the calculation of `z2` above, the typecast of to `(float)` type happens **before** division occurs above; first, `x`'s value is converted to `float` form, and then it is divided by `y`.
+
+<a name="q13"></a>**[QUESTION 13](#a13)**: In the snippet above, what values do `z1`, `z2` and `z3` have when printed? Run the snippet in a Java program to verify your answer.
+
+## Arithmetics and Floating Point Data
+
+Generally, operations carried out with floating point data have a margin of error; that is, when arithmetic operations are performed with floating point data, the result is often inaccurate by a very small amount. Try running the following program to see for yourself:
+
+```java
+class MyClass
+{
+    public static void main(String[] args)
+    {
+        System.out.println(8 % 3.2);
+    }
+}
+```
+
+The printed value should, in theory, be `1.6`, because `8` is as large as `2` whole `3.2`s, plus a remainder of `1.6`. What is the actual result?
 
 ## Operator Precedence
 
 There are **many** operators in Java in addition to the arithmetic ones (and some arithmetic ones that we haven't discussed yet). The order in which operators' operations are carried out is determined using Java's operator precedence, which is shown in the table below. The operators at the top of the table are carried out first, and those at the bottom, last. It is not necessary for you to understand what most of the operators below are, for now.
 
-![Operator Precedence](./figures/operatorPrecedence.png)]
-
-<a name="q13"></a>
+![Operator Precedence](./figures/operatorPrecedence.png)
 
 ## Answers to Discussion Questions
 
 ### <a name="a1"></a>**[QUESTION 1](#q1)** 
 
-The short answer is "Nothing", in that nothing appears to happen from the user perspective when running the program. The longer answer is that, as stated above, a class called `MyClass` is defined, so a small amount of memory is set aside and the class definition is written in that memory, but these are all functions that happen under the hood in Java. Feel free to check out [this lab](https://github.com/arewhyaeenn/COMP_232_LAB_1_2_C_TUTORIAL) (for sophomore level students) if you want to learn a bit about memory allocation in C (as well as the basics if C).
+The short answer is "Nothing", in that nothing appears to happen from the user perspective when running the program. The longer answer is that, as stated above, a class called `MyClass` is defined, so a small amount of memory is set aside and the class definition is written in that memory, but these are all functions that happen under the hood in Java. Feel free to check out [this lab](https://github.com/arewhyaeenn/COMP_232_LAB_1_2_C_TUTORIAL) (for sophomore level students) if you want to learn a bit about memory allocation in C (as well as the basics if C). 
 
 ### <a name="a2"></a>**[QUESTION 2](#q2)**
 
@@ -547,9 +737,33 @@ The program does not compile. The value of constant data (data declared with the
 
 ### <a name="a8"></a>**[QUESTION 8](#q8)**
 
-The variable should be stored using an `unsigned short`. A `byte` is not large enough (even an `unsigned byte` has a maximum value of `255`). A `short`'s maximum value is `32767`, which is not quite large enough for the maximum stored value of `40000`. An `unsigned short`, however, can go up to `65535`. That is, an `unsigned short` can store any positive integer less than `2` raised to the `16`'th power, because it has `16` bits. There is no reason to use an `int` instead, as the `int` uses more space (`32` bits) and an `unsigned short` is large enough to meet the requirements.
+The variable should be stored using an `int`. A `byte` is not large enough (`byte` has a maximum value of `127`). A `short`'s maximum value is `32767`, which is not quite large enough for the maximum stored value of `40000`. An `int`
 
 ### <a name="a9"></a>**[QUESTION 9](#q9)**
 
 `float` literals are written the same as `double` literals, but with a trailing `f`. The `float` equivalent of `122.3` is `122.3f`. The `float` equivalent of `1.223e2` is `1.223e2f`.
+
+### <a name="a10"></a>**[QUESTION 10](#q10)**
+
+If `x` is an `int` with value `5` and `y` is an `int` with value `3` then:
+
+* `x + y * 5` evaluates to an `int` with value `20`.
+* `x + (y * 5)` evaluates to an `int` with value `20` as well; the parenthesis are redundant, because multiplication happens before addition without them.
+* `(x + y) * 5` evaluates to an `int` with value `40`; the parenthesis cause the addition to be evaluated before the multiplication.
+
+### <a name="a11"></a>**[QUESTION 11](#q11)**
+
+`y` ends up with value `-128`. This is because the maximum `byte` value is `127`; an attempt to convert `128` to a `byte` is an attempt to convert **1 more than `127`** to `byte` form. In Java (and most languages) when integer data becomes too large for its container, it "comes back in on the other side". In this case, 1 more than the maximum `byte` value, `127`, is the minimum `byte` value, `-128`.
+
+### <a name="a12"></a>**[QUESTION 12](#q12)**
+
+* `System.out.println( 5 + " elephants" );` prints out "`5 elephants`".
+* `System.out.println( 5 + 6 + " elephants" );` prints out "`11 elephants`". Addition is done from left to right, so the addition `5 + 6` is done before `String` concatenation.
+* `System.out.println( 5 + (6 + " elephants") );` prints out "`56 elephants`". The parenthesis cause `6` to be added to `" elephants"` first, resulting in a `String` with value `"6 elephants"`, to which `5` is then concatenated.
+
+### <a name="a13"></a>**[QUESTION 13](#q13)**
+
+* `z1` has the `int` value `2`, because it is calculated using integer division.
+* `z2` has the `float` value `2.5f`, because it is calculated using floating point division; `x` is explicitly converted to a `float`, and `y` is then implicitly converted to match `x`'s type for division.
+* `z3` has the `float` value `2.0f`. First, `x` is divided by `y` using integer division to get an integer value `2`, which is then converted to the `float` value `2.0f`.
 
