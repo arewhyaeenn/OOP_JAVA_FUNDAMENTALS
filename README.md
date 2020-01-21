@@ -23,9 +23,9 @@ There are discussion questions throughout the reading below. The answers are inc
 
 ## Java Program Structure
 
-Any Java program consists of at least one **class**. The program we will discuss and create today will be comprised of exactly one class. We'll spend more time covering exactly what a class is and how classes interact in future labs.
+Any Java program consists of at least one **class**. The programs we will discuss and create today will each be comprised of exactly one class. We'll spend more time covering exactly what a class is and how classes interact in future labs.
 
-Each class has a **name**, also known as an **identifier**; we'll go over what qualities identifiers must have to be valid later in this lab.
+Each class has a name, also known as an **identifier**; we'll go over what qualities identifiers must have to be valid later in this lab.
 
 Each class also has a **body**, denoted with a set of curly braces `{}`. Everything inside the curly braces is part of the class, and is said to be in the **scope** of the class.
 
@@ -60,7 +60,7 @@ class MyClass
 
 ## Comments
 
-Often you'll want to add **comments** to your code to explain how it functions, what its purpose is, etc. A comment is plain text that is ignored by the compiler, so it does not affect how the program runs.
+**Comments** are plain text that is ignored by the compiler, so it does not affect how the program runs. You'll generally want to add comments to your code to explain how it functions, what its purpose is, etc.
 
 Comments in Java come in two varieties: single-line comments and multi-line comments. Single line comments start with `//` and span a single line. Anything that appears after a `//` on a line is **commented out**, so it will be ignored by the compiler.
 
@@ -98,7 +98,7 @@ class MyClass
 }
 ```
 
-You'll often also want to include comments alongside small parts of your program indicating what those parts do.
+You'll sometimes want to include comments alongside small parts of your program indicating what those parts do. This is usually unnecessary; ideally your code itself is well-written enough to be readable, so commenting the purpose of individual lines is unnecessary.
 
 ```java
 class MyClass
@@ -122,7 +122,7 @@ class MyClass
 
 ### Properties
 
-An **identifier** is essentially a name for a variable, constant, method, class... basically anything that you create will need a name by which you can refer to it in your code.
+An **identifier** is essentially a name for a variable, constant, method, class... basically anything that you create will need a name by which you can refer to it.
 
 In Java, an identifier must have the following properties:
 
@@ -137,7 +137,7 @@ In Java, an identifier must have the following properties:
 
 Java identifiers are **case sensitive**. `number1` and `Number1` are different identifiers!
 
-<a name="q4"></a>**[QUESTION 4](#a4)** Determine whether each of the following is a single valid identifiers in Java; if not, determine why not.
+<a name="q4"></a>**[QUESTION 4](#a4)**: Determine whether each of the following is a single valid identifiers in Java; if not, determine why not.
 
 1. `asdf`
 2. `ASDF`
@@ -155,7 +155,7 @@ It is generally wise to choose an identifier that describes the thing being name
 
 It is helpful to categorize identifiers and systematically name members of different categories, so an identifier is enough to determine what type of data is referred to.
 
-There are many conventions for choosing identifiers. One common convention is:
+There are many conventions for formatting identifiers. One common convention is:
 
 * Class identifiers are in `PascalCase`, meaning each word in the identfier starts with a capital and the rest is lowercase. The class called `MyClass` in the example above is named using `PascalCase`
 * Variables are named in `camelCase`, which is the same as `PascalCase` but the first word starts with a lower case. The variable `myInteger` in the example above is named using `camelCase`.
@@ -169,7 +169,7 @@ The setup above leaves `lower_snake_case` available, so if another type of ident
 
 An **expression** is a combination of one or more constants, variables, operators, and functions that are interpreted to **produce a value**. As a rule of thumb, something is an expression if it has an "output". For instance, `5 + 4` is an expression, whose output is `9`. Simpler yet, `5` is an expression whose value is `5`.
 
-A **statement** is a combination of elements (constants, variables, ...) that are interpreted to **carry out an encoded action or sequences of actions**. For example, the statement `int x = 5;` performs two actions: it declares an `int` variable `x` and then **assigns** the value `5` to `x`. This is a specific type of statement, called an **assignment statement**, which we'll discuss in the next section.
+A **statement** is a combination of elements (constants, variables, ...) that are interpreted to **carry out an encoded action or sequences of actions**. For example, the statement `int x = 5;` performs two actions: it declares an `int` variable `x` and then **assigns** the value `5` to `x`. This is a specific type of statement, called an **assignment statement**, which we'll discuss in the next section. In Java, statements end with a semicolon `;`.
 
 A **block** is a sequence of statements in curly braces `{}`. In Java, anywhere that you can put a statement, you can also put a block.
 
@@ -698,7 +698,7 @@ There are **many** operators in Java in addition to the arithmetic ones (and som
 
 ### <a name="a1"></a>**[QUESTION 1](#q1)** 
 
-The short answer is "Nothing", in that nothing appears to happen from the user perspective when running the program. The longer answer is that, as stated above, a class called `MyClass` is defined, so a small amount of memory is set aside and the class definition is written in that memory, but these are all functions that happen under the hood in Java. Feel free to check out [this lab](https://github.com/arewhyaeenn/COMP_232_LAB_1_2_C_TUTORIAL) (for sophomore level students) if you want to learn a bit about memory allocation in C (as well as the basics if C). 
+The short answer is "Nothing", in that nothing appears to happen from the user perspective when running the program. The longer answer is that, as stated above, a class called `MyClass` is defined, so a small amount of memory is set aside and the class definition is written in that memory, but these all happen under the hood in Java. Feel free to check out [this lab](https://github.com/arewhyaeenn/COMP_232_LAB_1_2_C_TUTORIAL) (for sophomore level students) if you want to learn a bit about memory allocation in C (as well as the basics if C). 
 
 ### <a name="a2"></a>**[QUESTION 2](#q2)**
 
