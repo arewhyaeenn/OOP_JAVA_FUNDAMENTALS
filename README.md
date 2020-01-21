@@ -15,9 +15,6 @@ In this lab, you will learn:
 * What a `String` is, and how to create one in Java.
 * What literal values are, and how to format primitive literals and `String` literals.
 * How to perform basic arithmetic operations in Java.
-* How to import a library / package.
-* How to use methods from the `Math` library.
-* How to use the `Scanner` class from `java.util` to get input from the console.
 * What "operator precedence" means and how to determine the order in which operations will occur in Java.
 * What typecasting is, and how to convert between the primitive number types in Java.
 * Shortcut operators.
