@@ -21,7 +21,7 @@ In this lab, you will learn:
 
 There are discussion questions throughout the reading below. The answers are included at end of the lab, and are linked to the questions. Try to answer the questions before reading their answers! You are encouraged to discuss them (and anything else in this lab) with your neighbors.
 
-## Part 1 - Java Program Structure
+## Java Program Structure
 
 Any Java program consists of at least one **class**. The program we will discuss and create today will be comprised of exactly one class. We'll spend more time covering exactly what a class is and how classes interact in future labs.
 
