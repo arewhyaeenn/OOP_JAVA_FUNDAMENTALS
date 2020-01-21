@@ -17,9 +17,13 @@ In this lab, you will learn:
 * How to perform basic arithmetic operations in Java.
 * What "operator precedence" means and how to determine the order in which operations will occur in Java.
 * What typecasting is, and how to convert between the primitive number types in Java.
-* Shortcut operators.
+* How to use shortcut operators to make common calculations more concise.
+* How to access members of the `Math` class.
+* Where to find the Java 8 API, and documentation for classes in Java 8.
 
-There are discussion questions throughout the reading below. The answers are included at end of the lab, and are linked to the questions. Try to answer the questions before reading their answers! You are encouraged to discuss them (and anything else in this lab) with your neighbors.
+There are exercises throughout the reading below. The answers are included at end of the lab, and are linked to the questions. Try to complete each exercise before reading their answer! You are encouraged to discuss them (and anything else in this lab) with your neighbors.
+
+After the answers to exercises, you can find the lab assignment itself. This is what must be submitted. 
 
 ## Java Program Structure
 
@@ -46,7 +50,7 @@ When a program is executed, execution starts inside the body of the main method.
 
 Below is the simplest possible program in Java. If defines a class called `MyClass` whose contents consist exclusively of a main method with an empty body.
 
-<a name="q1"></a>**[QUESTION 1](#a1)** : What does the program below do when run?
+<a name="q1"></a>**[EXERCISE 1](#a1)** : What does the program below do when run?
 
 ```java
 class MyClass
@@ -114,9 +118,9 @@ class MyClass
 }
 ```
 
-<a name="q2"></a>**[QUESTION 2](#a2)**: Two programs are identical, except that one contains comments and the other program doesn't. Both programs are compiled. Is there any difference between the compiled versions of the programs?
+<a name="q2"></a>**[EXERCISE 2](#a2)**: Two programs are identical, except that one contains comments and the other program doesn't. Both programs are compiled. Is there any difference between the compiled versions of the programs?
 
-<a name="q3"></a>**[QUESTION 3](#a3)**: Do comments affect the performance (e.g. speed) of a program?
+<a name="q3"></a>**[EXERCISE 3](#a3)**: Do comments affect the performance (e.g. speed) of a program?
 
 ## Identifiers
 
@@ -137,7 +141,7 @@ In Java, an identifier must have the following properties:
 
 Java identifiers are **case sensitive**. `number1` and `Number1` are different identifiers!
 
-<a name="q4"></a>**[QUESTION 4](#a4)**: Determine whether each of the following is a single valid identifiers in Java; if not, determine why not.
+<a name="q4"></a>**[EXERCISE 4](#a4)**: Determine whether each of the following is a single valid identifiers in Java; if not, determine why not.
 
 1. `asdf`
 2. `ASDF`
@@ -167,7 +171,7 @@ The setup above leaves `lower_snake_case` available, so if another type of ident
 
 ## Expressions, Statements and Blocks
 
-An **expression** is a combination of one or more constants, variables, operators, and functions that are interpreted to **produce a value**. As a rule of thumb, something is an expression if it has an "output". For instance, `5 + 4` is an expression, whose output is `9`. Simpler yet, `5` is an expression whose value is `5`.
+An **expression** is a combination of one or more constants, variables, operators, and functions that are interpreted to **produce a value**. As a rule of thumb, something is an expression if it results in an **output** or **value**. For instance, `5 + 4` is an expression, whose output is `9`. Simpler yet, `5` is an expression whose value is `5`.
 
 A **statement** is a combination of elements (constants, variables, ...) that are interpreted to **carry out an encoded action or sequences of actions**. For example, the statement `int x = 5;` performs two actions: it declares an `int` variable `x` and then **assigns** the value `5` to `x`. This is a specific type of statement, called an **assignment statement**, which we'll discuss in the next section. In Java, statements end with a semicolon `;`.
 
@@ -177,7 +181,7 @@ A **block** is a sequence of statements in curly braces `{}`. In Java, anywhere 
 
 ### Variables
 
-Variables are created and named with a **declaration**. A variable declaration specifies:
+Variables are created and named with **declarations**. A variable declaration specifies:
 
 * What type of data the variable will refer to.
 * The identifier for the variable.
@@ -186,9 +190,9 @@ Variables are created and named with a **declaration**. A variable declaration s
 int myNumber;
 ```
 
-The declaration above declares a variable called `myNumber` of type `int`. This means `myNumber` can hold the value of an integer.
+The declaration above declares a variable called `myNumber` of type `int`. This means `myNumber` can hold an integer value within the bounds of the `int` type.
 
-Notice that no value is given to `myNumber` in the statement above. The variable is set up, and ready to store an integer value, but value has been **assigned** to it. The first assignment to a variable is said to **initialize** the variable. Variables that have not been initialized (also known as **uninitialized variables**) cannot be **accessed** (i.e. their values cannot be used). Code which attempts to access a variable that has been declared but not initialized will not compile. For example:
+Notice that no value is given to `myNumber` in the statement above. The variable is declared and ready to store an integer value, but no value has been **assigned** to it. The first assignment to a variable is said to **initialize** the variable. Variables that have not been initialized (also known as **uninitialized variables**) cannot be **accessed** (i.e. their values cannot be used). Code which attempts to access a variable that has been declared but not initialized will not compile. For example:
 
 ```java
 class MyClass
@@ -203,7 +207,17 @@ class MyClass
 
 The code above will not compile. This is because `x` is declared with the statement `int x;`, but is never initialized. The next line `System.out.println("x's value is : ", + x);` would attempt to access `x` to print its value.
 
-Compilation will fail even if the variable **might** not have been initialized. For instance, the code below gets an input from the user. If that input is `0`, it assigns value `1` to `x`; otherwise it does not perform this assignment, so `x` is left uninitialized. Because `x` might be left uninitialized, the code will not even compile.
+A declared variable can be made to hold a specfied value with an **assignment**; this is done with `=`, the **assignment operator**. A statement which uses the assignment operator to assign a value to a variable is called an **assignment statement**. Assignment statements are written out in the form `<identifier> = <expression> ;`; the value of the expression on the right is stored in the variable with the identifier on the left.
+
+```java
+// declare myNumber
+int myNumber;
+
+// assign value 1 to myNumber;
+myNumber = 1;
+```
+
+Compilation will fail if the variable **might** not have been initialized. For instance, the program below gets an input from the user (typed in the console). If that input is `0`, it assigns value `1` to `x`; otherwise it does not perform this assignment, so `x` is left uninitialized. Because `x` might be left uninitialized, the code will not even compile.
 
 ```java
 import java.util.Scanner;
@@ -226,16 +240,6 @@ class MyClass
         System.out.println("hello " + x);
     }
 }
-```
-
-A declared variable can be made to hold a specfied value with an **assignment**; this is done with `=`, the **assignment operator**. A statement which uses the assignment operator to assign a value to a variable is called an **assignment statement**. Assignment statements are written out in the form `<identifier> = <expression> ;`; the value of the expression on the right is stored in the variable with the identifier on the left.
-
-```java
-// declare myNumber
-int myNumber;
-
-// assign value 1 to myNumber;
-myNumber = 1;
 ```
 
 Variables can be **reassigned** whenever desired; that is, their values can be changed to a new value at any time. Variables can **never** be **redeclared**. Once a variable has been declared, it cannot be declared again.
@@ -261,7 +265,7 @@ int myVariable = 1;
 myVariable = 2;
 ```
 
-<a name="q5"></a>**[QUESTION 5](#a5)**: Read the program below, and see if  you can determine what it does. What is printed? Try running it and see if you were correct.
+<a name="q5"></a>**[EXERCISE 5](#a5)**: Read the program below, and see if  you can determine what it does. What is printed? Try running it and see if you were correct.
 
 ```java
 class MyClass
@@ -273,11 +277,11 @@ class MyClass
 		
 		// assign value 1 to myNumber and print it
 		myNumber = 1;
-		System.out.println("My number is : " myNumber);
+		System.out.println("My number is : " + myNumber);
 		
 		// reassign myNumber's value to 2, and print it
 		myNumber = 2;
-		System.out.println("My number is : " myNumber);
+		System.out.println("My number is : " + myNumber);
 	}
 }	
 ```
@@ -298,7 +302,7 @@ MY_CONSTANT = 1;
 
 Note another difference: the identifier `MY_CONSTANT` has been spelled using a different capitalization scheme than the `myVariable`. This is a **choice**; the capitalization scheme used for identifiers does not affect what the referenced variables, constants, classes etc can do. To reiterate from the previous section, identifiers should be formatted systematically based on what they reference.
 
-<a name="q6"></a>**[QUESTION 6](#a6)**: If you try to compile the following program, what happens?
+<a name="q6"></a>**[EXERCISE 6](#a6)**: If you try to compile the following program, what happens?
 
 ```java
 class MyClass
@@ -331,7 +335,7 @@ class MyClass
 }
 ```
 
-<a name="q7"></a>**[QUESTION 7](#a7)**: In the snippet below, what is printed out as the value of `y` at the bottom? Since `y` was declared and initialized with `int y = x;`, does changing `x`'s value also change `y`'s value?
+<a name="q7"></a>**[EXERCISE 7](#a7)**: In the snippet below, what is printed out as the value of `y` at the bottom? Since `y` was declared and initialized with `int y = x;`, does changing `x`'s value also change `y`'s value?
 
 ```java
 class MyClass
@@ -351,7 +355,7 @@ class MyClass
 
 ## Java's Primitive Data Types
 
-Java has eight built-in, basic data types called **primitives**. These are not the only data types in Java - new data types can be defined at will (we will make our own data types later in the semester through class definitions). But any data that is not primitive data can is comprised of primitive data; all data types are constructed out of the primitive data types. Primitives are to data types as primes are to natural numbers.
+Java has eight built-in, basic data types called **primitives**. These are not the only data types in Java - new data types can be defined at will (we will make our own data types later in the semester through class definitions). But any data that is not primitive data is comprised of primitive data; all data types are constructed out of the primitive data types. Primitives are to data types as primes are to natural numbers.
 
 Four of Java's eight primitive data types are for storing integer numbers:
 
@@ -372,7 +376,7 @@ Four of Java's eight primitive data types are for storing integer numbers:
 	* minimum value : `-9223372036854775808`
 	* maximum value : `9223372036854775807`
 
-Two of the remaining four primitive data types are numberical. They are not for storing integer data, but for storing **floating point** data, i.e. (positive or negative) numbers with non-whole parts. These two data types are:
+Two of the remaining four primitive data types are numerical. They are not for storing integer data, but for storing **floating point** data, i.e. (positive or negative) numbers with non-whole parts. These two data types are:
 
 * `float` :
 	* floating point data, stored in 32 bits (4 bytes)
@@ -383,6 +387,8 @@ Two of the remaining four primitive data types are numberical. They are not for 
 	* minimum positive value: `4.9E-324`
 	* maximum positive value: `1.7976931348622157E308`
 
+Note the `E`s in the numerical values above; the values are in scientific notation.
+
 There are two remaining primitive data types:
 
 * `char` :
@@ -391,7 +397,7 @@ There are two remaining primitive data types:
 * `boolean` :
 	* stores either `true` or `false`, these are the only possible values
 
-<a name="q8"></a>**[QUESTION 8](#a8)**: Imagine you want to store integer data in a variable. Imagine further that based on the context, you know that:
+<a name="q8"></a>**[EXERCISE 8](#a8)**: Imagine you want to store integer data in a variable. Imagine further that based on the context, you know that:
 
 * The value of the integer will never be negative.
 * The value of the integer will always be at most `40000`.
@@ -410,20 +416,20 @@ Literal values are sequences of characters which represent values for different 
 
 ### Integer Literals
 
-For example, `int`, `short` and `byte` literals are all an optional `+` or `-` sign followed by a a collection of digits. This should be somewhat intuitive; literal values for these three data types, meant to store integer values, are characters which represent integer values.
+`int`, `short` and `byte` literals are all an optional `+` or `-` sign followed by a a collection of digits. This should be somewhat intuitive; literal values for these three data types, meant to store integer values, are characters which represent integer values.
 
 Consider for example the three statements below:
 
 ```java
-byte a = 1;
-short b = -1;
-int c = +5;
+byte a = 11;
+short b = -123;
+int c = +52;
 ```
 
 Each statement does two things:
 
-* Declares a variable (of type `byte`, `short` or `int`)
-* Assigns value to the variable, using a literal value
+* Declares a variable (of type `byte`, `short` or `int`).
+* Assigns value to the variable, using a literal value.
 
 `long` literals are similar to `byte`, `short` and `int` literals but they have an extra piece: a trailing `l` (that is a lowercase `L`, for `long`). So, while `12` is a `byte`, `short` or `int` literal, `12l` is a `long` literal.
 
@@ -449,7 +455,7 @@ Floating point literals are like integer literals, but they include a decimal po
 
 Literals for both floating point types can be given in either fixed or scientific notation. The `double` literal `122.3` (in fixed notation) is identical to a scientific notation equvialent `1.223e2` (which means `1.223` times `10` raised to the power `2`).
 
-<a name="q9"></a>**[QUESTION 9](#a9)** : What are the `float` literal equivalents of the `double` literals `122.3` and `1.223e2`?
+<a name="q9"></a>**[EXERCISE 9](#a9)** : What are the `float` literal equivalents of the `double` literals `122.3` and `1.223e2`?
 
 The following declarations and assignments would all be valid:
 
@@ -484,7 +490,7 @@ char theNextLetter = 'b';
 
 `String` literal data is represented as a sequence of 0 or more characters in double quotes. If you wanted to store the word "pancake" in a `String` variable, you would do it using the literal `"pancake"`.
 
-A string with 0 characters, called an 
+A string with 0 characters, called an **empty string**.
 
 For example, the following statement declares a variable named `pancakeString` of type `String` and stores in it the sequence of characters `"pancake"`.
 
@@ -502,9 +508,9 @@ The five basic arithmetic operations in Java are `+`, `-`, `*`, `/`, and `%`. Th
 * `x / y` is the quotient of `x` divided by `y`
 * `x % y` is the remainder of `x` divided by `y`
 
-The order in which arithmetic operations are executed can be determined the same way it is in mathematics, using **PEMDAS** (if you're not sure what **PEMDAS** is, use those search engine skills). You may have noticed that exponentiation does not have an operator; it is done with a **method** from the `Math` library, which we will discuss later.
+The order in which arithmetic operations are executed can be determined the same way it is in mathematics, using **PEMDAS** (if you're not sure what **PEMDAS** is, use those search engine skills). You may have noticed that there isn't an operator for exponentiation; it is done with a **method** from the `Math` class, which we will discuss later.
 
-<a name="q10"></a>**[QUESTION 10](#a10)**: Assume `x` and `y` are `int` variables with respective values `5` and `3`. What are the results of the following expressions:
+<a name="q10"></a>**[EXERCISE 10](#a10)**: Assume `x` and `y` are `int` variables with respective values `5` and `3`. What are the results of the following expressions:
 
 * `x + y * 5`
 * `x + (y * 5)`
@@ -553,7 +559,7 @@ byte y = (byte) x;
 
 The above takes the `int` value `5` stored in `x` and converts it to the equivalent `byte` value. Since `5` is within the bounds for a `byte`, the conversion happens without error. But `byte` data must be in the close interval `[-128, 127]`.
 
-<a name="q11"></a>**[QUESTION 11](#a11)**: Try to predict what value will be printed for `y` in the program below. Then, run the program and verify your prediction.
+<a name="q11"></a>**[EXERCISE 11](#a11)**: Try to predict what value will be printed for `y` in the program below. Then, run the program and verify your prediction.
 
 ```java
 class MyClass
@@ -595,7 +601,7 @@ The `+` operator is polymorphic. It behaves differently depending on the types o
 
 The polymorphic behavior of the `+` operator is more easily seen in how it behaves with `String` operands. Any data with a defined way to be converted to `String` form can be added to a `String`, and this will result in **concatenation**. That is, if one of the inputs for the `+` operator is a `String`, it performs a **different operation** that it would if they were all numerical primitives. For instance, `50 + "elephants"` results in the `String` value `"50elephants"`.
 
-<a name="q12"></a>**[QUESTION 12](#a12)**: Consider the following statements. Give that addition is evaluated from left to right, predict what should be printed by each one. Then, create a program to test your predictions.
+<a name="q12"></a>**[EXERCISE 12](#a12)**: Consider the following statements. Give that addition is evaluated from left to right, predict what should be printed by each one. Then, create a program to test your predictions.
 
 ```java
 System.out.println( 5 + " elephants" );
@@ -670,7 +676,7 @@ System.out.println("z3 is " + z3);
 
 Note that in the calculation of `z2` above, the typecast of to `(float)` type happens **before** division occurs above; first, `x`'s value is converted to `float` form, and then it is divided by `y`.
 
-<a name="q13"></a>**[QUESTION 13](#a13)**: In the snippet above, what values do `z1`, `z2` and `z3` have when printed? Run the snippet in a Java program to verify your answer.
+<a name="q13"></a>**[EXERCISE 13](#a13)**: In the snippet above, what values do `z1`, `z2` and `z3` have when printed? Run the snippet in a Java program to verify your answer.
 
 ## Arithmetics and Floating Point Data
 
@@ -694,21 +700,50 @@ There are **many** operators in Java in addition to the arithmetic ones (and som
 
 ![Operator Precedence](./figures/operatorPrecedence.png)
 
-## Answers to Discussion Questions
+## The `Math` Class and Documentation
 
-### <a name="a1"></a>**[QUESTION 1](#q1)** 
+There are many functions and constants useful in mathematics in general which are accessible through the `Math` class. For instance, there is not an operator for exponentiation in Java, but the `Math` class has a function for it.
+
+You can see documentation for the `Math` class and all of its contained utilities on [its page in the Java 8 API](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html). (You could easily find this page by searching "java 8 math").
+
+In the documentation linked above, you can find every constant and method in the `Math` class, and descriptions of what those constants and methods do. Documentation like this is available for all built-in packages in the [Java 8 API](https://docs.oracle.com/javase/8/docs/api/).
+
+As a programmer, one of your most valuable skills is reading and interpreting documentation (and StackOverflow posts) in order to learn how to use tools and how to debug programs using those tools.
+
+Members of a class can be accessed with the **access operator** (a dot following the class name). Member accesses are made in the form `<ClassIdentifier>.<memberIdentifier>`. For instance, the `PI` constant is a member of the `Math` class, so its value can be accessed with `Math.PI`. Similarly, the `pow` function is a member of the `Math` class, so it can be accessed with `Math.pow`. `Math.pow` is a function which takes two inputs and raises the first to the power of the second. For instance, `Math.pow(2, 3)` returns the result of raising `2` to the power `2`. We will discuss functions calls in a future lab, but for now note that when a function takes inputs, those inputs are given in a comma-separated list, in parenthesis, after the function itself.
+
+<a name="q14"></a>**[EXERCISE 14](#a14)**: The program below does not compile. Use the `Math` class documentation to figure out why, and fix the problem.
+
+```java
+class MyClass
+{
+    public static void main(String[] args)
+    {
+        int x = 4;
+        int y = 3;
+
+        int z = Math.pow(x, y);
+
+        System.out.println(x + " raised to the power " + y + " is " + z);
+    }
+}
+```
+
+## Answers to Exercises
+
+### <a name="a1"></a>**[EXERCISE 1](#q1)** 
 
 The short answer is "Nothing", in that nothing appears to happen from the user perspective when running the program. The longer answer is that, as stated above, a class called `MyClass` is defined, so a small amount of memory is set aside and the class definition is written in that memory, but these all happen under the hood in Java. Feel free to check out [this lab](https://github.com/arewhyaeenn/COMP_232_LAB_1_2_C_TUTORIAL) (for sophomore level students) if you want to learn a bit about memory allocation in C (as well as the basics if C). 
 
-### <a name="a2"></a>**[QUESTION 2](#q2)**
+### <a name="a2"></a>**[EXERCISE 2](#q2)**
 
 No, there is no difference between the two compiled programs; comments are ignored by the compiler. There are even tools called reverse compilers which take compiled code and convert back to Java; if you take a Java program with comments, compile it and then reverse-compile the result, you'll get your original program without the comments.
 
-### <a name="a3"></a>**[QUESTION 3](#q3)**
+### <a name="a3"></a>**[EXERCISE 3](#q3)**
 
 Because comments are ignored by the compiler, they **do not** affect the performance of the program. They can make the program take (infinitesimally) more time to compile, but in general run time matters and compile time does not matter because a program only needs to be compiled once and then the compiled program can be used as many times as desired.
 
-### <a name="a4"></a>**[QUESTION 4](#q4)**
+### <a name="a4"></a>**[EXERCISE 4](#q4)**
 
 1. Yes, `asdf` is a valid identifier.
 2. Yes, `ASDF` is a valid identifier.
@@ -720,27 +755,27 @@ Because comments are ignored by the compiler, they **do not** affect the perform
 8. Yes, `var1` is a valid identifier, identifiers can contain digits.
 9. No, `1var` is not a valid identifier; while identifiers can contain digits, they must start with a Java letter.
 
-### <a name="a5"></a>**[QUESTION 5](#q5)**
+### <a name="a5"></a>**[EXERCISE 5](#q5)**
 
 The program does precisely what the comments state it does: it declared an `int` variable called `myNumber`, assigns `myNumber`'s value to `1`, prints that value `1`, reassigns `myNumber`'s value to `2`, and then prints this new value `2`.
 
-### <a name="a6"></a>**[QUESTION 6](#q6)**
+### <a name="a6"></a>**[EXERCISE 6](#q6)**
 
 The program does not compile. The value of constant data (data declared with the `final` keyword) cannot be changed.
 
-### <a name="a7"></a>**[QUESTION 7](#q7)**
+### <a name="a7"></a>**[EXERCISE 7](#q7)**
 
 `y`'s value is still `2` at the end. When `y` is initialized with `int y = x;`, it is given the same value as `x` (`2`). When `x`'s value then changes to `3`, `y`'s does not change with it because `y` contained a copy of `x`'s data at the time of assignment, not a reference to `x` itself.
 
-### <a name="a8"></a>**[QUESTION 8](#q8)**
+### <a name="a8"></a>**[EXERCISE 8](#q8)**
 
-The variable should be stored using an `int`. A `byte` is not large enough (`byte` has a maximum value of `127`). A `short`'s maximum value is `32767`, which is not quite large enough for the maximum stored value of `40000`. An `int`
+The variable should be stored using an `int`. A `byte` is not large enough (`byte` has a maximum value of `127`). A `short`'s maximum value is `32767`, which is not quite large enough for the maximum stored value of `40000`. An `int` is large enough, with a maximum value far beyond `40000`. A `long` would work, but given the maximum value of `40000` and `int` is big enough, so there's no reason to use extra space for a `long`.
 
-### <a name="a9"></a>**[QUESTION 9](#q9)**
+### <a name="a9"></a>**[EXERCISE 9](#q9)**
 
 `float` literals are written the same as `double` literals, but with a trailing `f`. The `float` equivalent of `122.3` is `122.3f`. The `float` equivalent of `1.223e2` is `1.223e2f`.
 
-### <a name="a10"></a>**[QUESTION 10](#q10)**
+### <a name="a10"></a>**[EXERCISE 10](#q10)**
 
 If `x` is an `int` with value `5` and `y` is an `int` with value `3` then:
 
@@ -748,19 +783,227 @@ If `x` is an `int` with value `5` and `y` is an `int` with value `3` then:
 * `x + (y * 5)` evaluates to an `int` with value `20` as well; the parenthesis are redundant, because multiplication happens before addition without them.
 * `(x + y) * 5` evaluates to an `int` with value `40`; the parenthesis cause the addition to be evaluated before the multiplication.
 
-### <a name="a11"></a>**[QUESTION 11](#q11)**
+### <a name="a11"></a>**[EXERCISE 11](#q11)**
 
 `y` ends up with value `-128`. This is because the maximum `byte` value is `127`; an attempt to convert `128` to a `byte` is an attempt to convert **1 more than `127`** to `byte` form. In Java (and most languages) when integer data becomes too large for its container, it "comes back in on the other side". In this case, 1 more than the maximum `byte` value, `127`, is the minimum `byte` value, `-128`.
 
-### <a name="a12"></a>**[QUESTION 12](#q12)**
+### <a name="a12"></a>**[EXERCISE 12](#q12)**
 
 * `System.out.println( 5 + " elephants" );` prints out "`5 elephants`".
 * `System.out.println( 5 + 6 + " elephants" );` prints out "`11 elephants`". Addition is done from left to right, so the addition `5 + 6` is done before `String` concatenation.
 * `System.out.println( 5 + (6 + " elephants") );` prints out "`56 elephants`". The parenthesis cause `6` to be added to `" elephants"` first, resulting in a `String` with value `"6 elephants"`, to which `5` is then concatenated.
 
-### <a name="a13"></a>**[QUESTION 13](#q13)**
+### <a name="a13"></a>**[EXERCISE 13](#q13)**
 
 * `z1` has the `int` value `2`, because it is calculated using integer division.
 * `z2` has the `float` value `2.5f`, because it is calculated using floating point division; `x` is explicitly converted to a `float`, and `y` is then implicitly converted to match `x`'s type for division.
 * `z3` has the `float` value `2.0f`. First, `x` is divided by `y` using integer division to get an integer value `2`, which is then converted to the `float` value `2.0f`.
 
+### <a name="a14"></a>**[EXERCISE 14](#q14)**
+
+This program:
+
+```java
+class MyClass
+{
+    public static void main(String[] args)
+    {
+        int x = 4;
+        int y = 3;
+
+        int z = Math.pow(x, y);
+
+        System.out.println(x + " raised to the power " + y + " is " + z);
+    }
+}
+```
+
+does not compile because `Math.pow` returns a floating point value in the form of a `double`, and the program attempts to implicitly store that floating point value in an `int`. One way to fix this is to cast the result of the `pow` call to an `int`:
+
+```java
+class MyClass
+{
+    public static void main(String[] args)
+    {
+        int x = 4;
+        int y = 3;
+
+        int z = (int) Math.pow(x, y);
+
+        System.out.println(x + " raised to the power " + y + " is " + z);
+    }
+}
+```
+
+However, as we've discussed, this might lead to a loss of precision. Due to floating point error, the `pow` call might return `63.999...` instead of `64`, and when this `63.999` is cast as an `int` it becomes `63`. (With these particular numbers, no rounding error occurs, but the idea is what matters).
+
+Another way to fix the issue could be to make `z` a `double` so it can store the output of `Math.pow`:
+
+```java
+class MyClass
+{
+    public static void main(String[] args)
+    {
+        int x = 4;
+        int y = 3;
+
+        double z = Math.pow(x, y);
+
+        System.out.println(x + " raised to the power " + y + " is " + z);
+    }
+}
+```
+
+However, in this case both inputs for `Math.pow` are integers, so the result is definitely an integer; we might want to store it in integer form, in which case we could use the `Math.round` function to round away the floating point error in the result of exponentiation (and make `z` a long, as this is the type returned by `Math.round`):
+
+```java
+class MyClass
+{
+    public static void main(String[] args)
+    {
+        int x = 4;
+        int y = 3;
+
+        long z = Math.round( Math.pow(x, y) );
+
+        System.out.println(x + " raised to the power " + y + " is " + z);
+    }
+}
+```
+
+# Lab Assignment
+
+The lab assignment below consists of a sequence of tasks. In each task, you will create or complete a program to meet specifications. Your submissions should consist of the completed programs (the .java files) and documentation of each program, describing what the program does, providing test runs (i.e. the console, copy-pasted) demonstrating its functionality, and commenting on any known issues with the program that you haven't fixed. Your documentation should be in a markdown file (you should learn markdown, check out the [MacDown](https://macdown.uranusjr.com) editor if you're on MacOS) or a text file if you want me to think you're lazy.
+
+## Task 1
+
+Use the program below as a starting point. Below each commented instruction, write a corresponding statement that does what the comment describes. After each step, you should print out a message stating any variables that have changed with their new values.
+
+A sample run is provided after the starter code.
+
+```java
+public class FillInTheCode
+{
+    public static void main(String[] args)
+    {
+        int a = 1;
+        int b = 2;
+        double c = 0;
+
+        System.out.println("a is " + a);
+        System.out.println("b is " + b);
+        System.out.println("c is " + c);
+
+        System.out.println("\nSetting c to the sum of a and b.");
+        // TODO set c equal to the sum of a and b ("set c" means "assign c's value").
+
+        System.out.println("\nDeclaring d, setting its value to a's value.");
+        // TODO declare a new double with identifier d, and set its value to a's value.
+
+        System.out.println("\nSetting d to 4 times the sum of a and d.");
+        // TODO set d equal to 4 times the sum of a and d.
+
+        System.out.println("\nSetting c to the average of a and b.");
+        // TODO set c equal to the average of a and b (without loss of precision).
+    }
+}
+```
+
+### Task 1 Sample Run
+
+```
+a is 1
+b is 2
+c is 0.0
+
+Setting c to the sum of a and b.
+c is now 3.0
+
+Declaring d, setting its value to a's value.
+d is now 1.0
+
+Setting d to 4 times the sum of a and d.
+d is now 8.0
+
+Setting c to the average of a and b.
+c is now 1.5
+
+Process finished with exit code 0
+```
+
+
+## Task 2
+
+Using the program below as a starting point, write a program which prompts the user for the radius of a circle, reads their response in the console as a `double`, and calculates and prints the circle's area and circumference.
+
+The provided code prompts the user for the radius and stores their response in the variable `radius`. You need to fill in the calculation of and printing of the area and circumference.
+
+```java
+import java.util.Scanner;
+
+public class Circle
+{
+    public static void main(String[] args)
+    {
+        Scanner scan = new Scanner( System.in );
+        System.out.print("Enter the radius of a circle : ");
+
+        double radius = scan.nextDouble();
+
+        // TODO find and print the area and circumference of the circle.
+        // Your printed messages should be complete sentences, not just numbers.
+    }
+}
+```
+
+### Task 2 Sample Run
+
+```
+Enter the radius of a circle : 2.5
+The area is 19.634954084936208 and the circumference is 15.707963267948966.
+
+Process finished with exit code 0
+```
+
+## Task 3
+
+In the previous task, you have an example of use of the `Scanner` class from the `java.util` package to get user input in the form of a double. This `Scanner` class can be used to get other types of data from the console too! Find the API for the Java 8 `Scanner` and read through it to find the appropriate methods to use (instead of `nextDouble()`) to get the appropriate data from the user in the task below.
+
+Note that you can use the same `Scanner` for multiple inputs. The line `Scanner scan = new Scanner( System.in );` **constructs** (i.e. sets up) a new `Scanner`, and this setup only needs to happen once. Afterward, the `Scanner` named `scan` can be used to get as many inputs as desired.
+
+Also note the line `import java.util.Scanner;` at the top of the program in the previous task. The scanner is not in `java.lang`, the core of the Java language, so if you want to use it you need to `import` it.
+
+Write a program which asks the user three questions. The first question should be answered with a `String`, the second with an `int`, and the third with a `boolean`.
+
+Store the users responses to these questions in variables with the appropriate types.
+
+Then, when the user is done answering all three questions, print out messages that summarize their responses to your questions.
+
+A sample run is below. You can use the questions I used, but it's more fun if you make up your own!
+
+### Task 3 Sample Run
+
+```
+SURVEY TIME
+
+How many toes do you have?
+7
+
+Why did the chicken cross the road?
+Idk dude it's a chicken...
+
+true or false : Radishes are the coolest vegetable.
+true
+
+
+SURVEY SUMMARY:
+
+You have 7 toes...?
+
+The chicken crossed the road because "Idk dude it's a chicken..."
+
+Radishes are the coolest vegetable : true
+
+Process finished with exit code 0
+
+```
