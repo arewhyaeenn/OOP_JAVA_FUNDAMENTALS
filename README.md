@@ -408,15 +408,15 @@ What primitive data type should you use to store the data?
 
 A `String` is a sequence of characters. For instance, `"abc 123"` could be a `String` composed of the sequence of characters `'a'`, `'b'`, `'c'`, `' '`, `'1'`, `'2'`, `'3'`.
 
-`String`s are not a primitive data type in Java; they are instead objects. In fact, all data types in Java other than the eight primitives discussed earlier are objects. We will discuss the differences between objects and primitives shortly.
+`String`s are not a primitive data type in Java; they are instead objects. In fact, all data types in Java other than the eight primitives discussed earlier are objects. We will discuss the differences between objects and primitives in the next lab.
 
 ## Literal Values
 
-Literal values are sequences of characters which represent values for different data types.
+Literal values are expressions which directly represent values for different data types without any evaluation necessary. For instance, `1` is an `int` literal, but `1+2` is not.
 
 ### Integer Literals
 
-`int`, `short` and `byte` literals are all an optional `+` or `-` sign followed by a a collection of digits. This should be somewhat intuitive; literal values for these three data types, meant to store integer values, are characters which represent integer values.
+`int`, `short` and `byte` literals are all an optional `+` or `-` sign followed by a collection of digits. This should be somewhat intuitive; literal values for these three data types, meant to store integer values, are characters which represent integer values.
 
 Consider for example the three statements below:
 
@@ -429,7 +429,7 @@ int c = +52;
 Each statement does two things:
 
 * Declares a variable (of type `byte`, `short` or `int`).
-* Assigns value to the variable, using a literal value.
+* Assigns value to the variable, using a literal value. The literals used above are `11`, `-123`, and `+52`.
 
 `long` literals are similar to `byte`, `short` and `int` literals but they have an extra piece: a trailing `l` (that is a lowercase `L`, for `long`). So, while `12` is a `byte`, `short` or `int` literal, `12l` is a `long` literal.
 
