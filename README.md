@@ -6,7 +6,7 @@ In this lab, you will learn:
 * What expressions, statements and blocks are.
 * What a comment is, and how to comment in Java.
 * How to name variables, constants, classes, ...
-* How to stored and manipulate data in a variable.
+* How to store and manipulate data in a variable.
 * What "declaration" and "assignment" are, how to declare and assign value to variables and constants in Java.
 * How to create and store data in a constant.
 * The difference between variables and constants.
