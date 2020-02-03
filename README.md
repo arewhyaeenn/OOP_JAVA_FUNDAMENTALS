@@ -155,7 +155,7 @@ Java identifiers are **case sensitive**. `number1` and `Number1` are different i
 
 ### Conventions
 
-It is generally wise to choose an identifier that describes the thing being named; your identifiers should try to describe he purpose of the object being named, or describe the data that will be stored in it. Nondescriptive variable names are generally frowned upon, as they make code harder to read and therefore harder to edit and improve. Choosing good identifiers can reduce the need for comments explaining code by making the code itself readable enough to not require as much commenting!
+It is generally wise to choose an identifier that describes the thing being named; your identifiers should try to describe the purpose of the object being named, or describe the data that will be stored in it. Nondescriptive variable names are generally frowned upon, as they make code harder to read and therefore harder to edit and improve. Choosing good identifiers can reduce the need for comments explaining code by making the code itself readable enough to not require as much commenting!
 
 It is helpful to categorize identifiers and systematically name members of different categories, so an identifier is enough to determine what type of data is referred to.
 
