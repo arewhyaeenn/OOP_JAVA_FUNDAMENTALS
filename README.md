@@ -611,7 +611,7 @@ System.out.println( 5 + (6 + " elephants") );
 
 ## Arithmetic Operations (Again)
 
-The arithmetic operations are **all** polymorphic in how the perform calculations with numerical primitives; it's just less obvious than it is with `String` data because it's easy to think of all numbers as just numbers, and not pay attention to how the number is encoded in binary.
+The arithmetic operations are **all** polymorphic in how they perform calculations with numerical primitives; it's just less obvious than it is with `String` data because it's easy to think of all numbers as just numbers, and not pay attention to how the number is encoded in binary.
 
 We will not dwell on the binary representations of the numerical data types here; you will cover that in future classes and/or do some independent research on the subject. But it is important to note that the numerical primitives store their contained data in different formats. Specifically, the floating point types `float` and `double` use one format, while the integer types `byte`, `short`, `int` and `long` use a different format.
 
