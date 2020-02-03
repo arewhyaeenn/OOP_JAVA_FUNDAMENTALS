@@ -48,7 +48,7 @@ Any main method consists of the header `public static void main(String[] args)`,
 
 When a program is executed, execution starts inside the body of the main method.
 
-Below is the simplest possible program in Java. If defines a class called `MyClass` whose contents consist exclusively of a main method with an empty body.
+Below is the simplest possible program in Java. It defines a class called `MyClass` whose contents consist exclusively of a main method with an empty body.
 
 <a name="q1"></a>**[EXERCISE 1](#a1)** : What does the program below do when run?
 
