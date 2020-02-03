@@ -595,7 +595,7 @@ In Unicode, the digits and the english alphabet are all congiguous (i.e. in a ro
 
 **Polymorphism** is a key concept in Object Oriented Programming. We will be discussing polymorphism much more in future labs. But, let's discuss it briefly now with the `+` operator as an example.
 
-When broken into its greek roots, "poly" and "morph", "polymorphism" essentially means "many forms". In programming, an entity is said to be polymorphic if it can more than one form, or have more than one meaning depending on context.
+When broken into its greek roots, "poly" and "morph", "polymorphism" essentially means "many forms". In programming, an entity is said to be polymorphic if it can take more than one form, or have more than one meaning depending on context.
 
 The `+` operator is polymorphic. It behaves differently depending on the types of its operands. We already know how it behaves with primitive numerical inputs; this is already polymorphism, as it returns outputs in different data types depending on the types of its operands. 
 
