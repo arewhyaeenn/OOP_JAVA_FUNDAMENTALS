@@ -574,7 +574,7 @@ class MyClass
 }
 ```
 
-The table below lists each primitive data type (in the left column) and the types of values that can be accepted (i.e. implicitly converted) for storage in that data type. As a rule of thumb, the "more complex" data types can store the "less complex" ones without any need for explicit conversion, while the converse is not true. In other words, upgrading data types does not require type casting, but upgrading them does.
+The table below lists each primitive data type (in the left column) and the types of values that can be accepted (i.e. implicitly converted) for storage in that data type. As a rule of thumb, the "more complex" data types can store the "less complex" ones without any need for explicit conversion, while the converse is not true. In other words, upgrading data types does not require type casting, but downgrading them does.
 
 **TYPE**  | **ACCEPTED TYPES**
 :-------: | :----------------:
