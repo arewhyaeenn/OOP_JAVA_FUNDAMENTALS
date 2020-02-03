@@ -72,7 +72,7 @@ Multi-line comments can span multiple lines; they begin with `/*` and end with `
 
 Usually, when you make a new class, you should include comments at the start of the file explaining what the class is for or what it does.
 
-The two snippets below are identicaly in functionality; in the first, the program description is in several single-line comments and in the second it is in one multi-line comment.
+The two snippets below are identical in functionality; in the first, the program description is in several single-line comments and in the second it is in one multi-line comment.
 
 ```java
 // The class MyClass below
