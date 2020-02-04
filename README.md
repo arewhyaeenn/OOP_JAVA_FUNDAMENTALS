@@ -1007,3 +1007,24 @@ Radishes are the coolest vegetable : true
 Process finished with exit code 0
 
 ```
+
+## Task 4 (Bonus)
+
+Write a program which generates a random integer from `1` to `100` (inclusive), then prompts the user to guess the number. It should then print a message telling the user whether or not their guess is correct. This will require an `if` statement, which we have not yet covered; you will need to do some research.
+
+## Task 5 (Bonus)
+
+The following task requires functionality that has not been covered in this lecture. You will need to do some research to determine how to do it.
+
+Create a file in the project directory called `input.txt`. Open `input.txt`, and write some stuff on the first line. Do not add any additional lines.
+
+Write a program which opens `input.txt`, reads its first line, and writes that line to a new file (also in the project directory) called `output.txt`.
+
+## Task 6 (Bonus)
+
+Edit your program from task 4. Instead of copying a single line from `input.txt` to `output.txt`, it should read any number of lines (one at a time) until it has read every line in `input.txt`.
+
+You should use a `while` loop, and the `Scanner` class's `hasNext` method. Both of these will require some additional research on your part.
+
+Your program should work independent of contents of `input.txt`; changes to `input.txt` should not require you to change your program in order for it to function as specified.
+
