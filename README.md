@@ -1010,9 +1010,23 @@ Process finished with exit code 0
 
 ## Task 4 (Bonus)
 
-Write a program which generates a random integer from `1` to `100` (inclusive), then prompts the user to guess the number. It should then print a message telling the user whether or not their guess is correct. This will require an `if` statement, which we have not yet covered; you will need to do some research.
+Write a program which prompts the user for an integer number of seconds.
+
+The program should then print out the corresponding number of hours, remaining minutes, and remaining seconds.
+
+### Task 4 Sample Run
+```
+Enter a number of seconds : 3661
+3661 seconds is equivalent to 1 hours, 1 minutes, and 1 seconds.
+
+Process finished with exit code 0
+```
 
 ## Task 5 (Bonus)
+
+Write a program which generates a random integer from `1` to `100` (inclusive), then prompts the user to guess the number. It should then print a message telling the user whether or not their guess is correct. This will require an `if` statement, which we have not yet covered; you will need to do some research.
+
+## Task 6 (Bonus)
 
 The following task requires functionality that has not been covered in this lecture. You will need to do some research to determine how to do it.
 
@@ -1020,7 +1034,7 @@ Create a file in the project directory called `input.txt`. Open `input.txt`, and
 
 Write a program which opens `input.txt`, reads its first line, and writes that line to a new file (also in the project directory) called `output.txt`.
 
-## Task 6 (Bonus)
+## Task 7 (Bonus)
 
 Edit your program from task 4. Instead of copying a single line from `input.txt` to `output.txt`, it should read any number of lines (one at a time) until it has read every line in `input.txt`.
 
