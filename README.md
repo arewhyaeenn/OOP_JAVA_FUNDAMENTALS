@@ -986,11 +986,11 @@ A sample run is below. You can use the questions I used, but it's more fun if yo
 ```
 SURVEY TIME
 
-How many toes do you have?
-7
-
 Why did the chicken cross the road?
 Idk dude it's a chicken...
+
+How many toes do you have?
+7
 
 true or false : Radishes are the coolest vegetable.
 true
@@ -998,9 +998,9 @@ true
 
 SURVEY SUMMARY:
 
-You have 7 toes...?
-
 The chicken crossed the road because "Idk dude it's a chicken..."
+
+You have 7 toes...?
 
 Radishes are the coolest vegetable : true
 
