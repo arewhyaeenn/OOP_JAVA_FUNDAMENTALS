@@ -500,7 +500,7 @@ String pancakeString = "pancake";
 
 ## Arithmetic Operators
 
-The five basic arithmetic operations in Java are `+`, `-`, `*`, `/`, and `%`. They are used for addition, subtraction, multiplication, division and remainder respectively. If `x` and `y` are both primitive numerical variables or constants of the same type (the numberical primitives are `byte`, `short`, `int`, `long`, `float`, and `double`) then:
+The five basic arithmetic operations in Java are `+`, `-`, `*`, `/`, and `%`. They are used for addition, subtraction, multiplication, division and remainder respectively. If `x` and `y` are both primitive numerical variables or constants of the same type (the numerical primitives are `byte`, `short`, `int`, `long`, `float`, and `double`) then:
 
 * `x + y` is the sum of `x` plus `y`
 * `x - y` is the difference, `x` minus `y`
