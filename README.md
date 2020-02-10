@@ -468,7 +468,7 @@ float d = 1.223e2f;
 
 ### Boolean Literals
 
-Literal values for `boolean` prititives are very simple. `boolean` data is either `true` or `false`. These are the only possible literal values for `boolean`s.
+Literal values for `boolean` primitives are very simple. `boolean` data is either `true` or `false`. These are the only possible literal values for `boolean`s.
 
 ```java
 boolean firstBool = true;
