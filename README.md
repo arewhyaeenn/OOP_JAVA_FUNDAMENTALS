@@ -1036,7 +1036,7 @@ Write a program which opens `input.txt`, reads its first line, and writes that l
 
 ## Task 7 (Bonus)
 
-Edit your program from task 4. Instead of copying a single line from `input.txt` to `output.txt`, it should read any number of lines (one at a time) until it has read every line in `input.txt`.
+Edit your program from task 6. Instead of copying a single line from `input.txt` to `output.txt`, it should read any number of lines (one at a time) until it has read every line in `input.txt`.
 
 You should use a `while` loop, and the `Scanner` class's `hasNext` method. Both of these will require some additional research on your part.
 
