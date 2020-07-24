@@ -42,11 +42,11 @@ class MyClass
 }
 ```
 
-Every Java program has exactly one **main method**. If a program consists of multiple classes, only one of those classes should contain a main method.
+Every Java program has exactly one **main method**. If a program has multiple classes, there might be more than one main method in the classes, but the program will only run one of the main methods (the one from the class on which javac was run).
 
 Any main method consists of the header `public static void main(String[] args)`, followed by curly braces `{}`. The contents of the curly braces are the **body** of the main method. `main` is an identifier reserved for the main method. `public`, `static`, and `void` are all keywords in Java, and we will discuss their individual uses and meanings in future labs. We will also discuss the meaning of `String[] args` in a future lab.
 
-When a program is executed, execution starts inside the body of the main method.
+When a program is run, execution starts inside the body of the main method.
 
 Below is the simplest possible program in Java. It defines a class called `MyClass` whose contents consist exclusively of a main method with an empty body.
 
@@ -217,7 +217,7 @@ int myNumber;
 myNumber = 1;
 ```
 
-Compilation will fail if the variable **might** not have been initialized. For instance, the program below gets an input from the user (typed in the console). If that input is `0`, it assigns value `1` to `x`; otherwise it does not perform this assignment, so `x` is left uninitialized. Because `x` might be left uninitialized, the code will not even compile.
+Compilation will fail if the variable **might** not have been initialized. For instance, the program below gets an input from the user (typed in the console). If that input is `0`, it assigns value `1` to `x`; otherwise it does not perform this assignment, so `x` is left uninitialized. Because `x` might be left uninitialized, the code will not even compile. Don't worry about the lines below that don't make sense; we haven't covered the `Scanner` yet, or `if` statements. The `if` statement might make intuitive sense to you, and it might not; either way, we'll cover it later.
 
 ```java
 import java.util.Scanner;
@@ -394,8 +394,10 @@ There are two remaining primitive data types:
 * `char` :
 	* character data, stored in 16 bits (2 bytes)
 	* stores a single character
+	* can store any character in Unicode, a convention for character storage. You can learn more [here](https://docs.oracle.com/javase/6/docs/api/java/lang/Character.html) if desired.
 * `boolean` :
-	* stores either `true` or `false`, these are the only possible values
+	* boolean data is stored in a single bit (1/8 of a byte)
+	* stores either `true` or `false` (i.e. 1 or 0, a bit); these are the only possible values
 
 <a name="q8"></a>**[EXERCISE 8](#a8)**: Imagine you want to store integer data in a variable. Imagine further that based on the context, you know that:
 
@@ -412,26 +414,26 @@ A `String` is a sequence of characters. For instance, `"abc 123"` could be a `St
 
 ## Literal Values
 
-Literal values are expressions which directly represent values for different data types without any evaluation necessary. For instance, `1` is an `int` literal, but `1+2` is not.
+Literal values are expressions which directly represent values for different data types without any evaluation necessary. For instance, `1` is an `int` literal, but `1+2` is not, though `1+2` **is** an integer expression.
 
 ### Integer Literals
 
-`int`, `short` and `byte` literals are all an optional `+` or `-` sign followed by a collection of digits. This should be somewhat intuitive; literal values for these three data types, meant to store integer values, are characters which represent integer values.
+`int`, `short` and `byte` literals are formatted as follows: an optional `+` or `-` sign followed by a collection of digits. This should be somewhat intuitive; literal values for these three data types, meant to store integer values, are characters which represent integer values.
 
 Consider for example the three statements below:
 
 ```java
 byte a = 11;
 short b = -123;
-int c = +52;
+int c = +61427;
 ```
 
 Each statement does two things:
 
 * Declares a variable (of type `byte`, `short` or `int`).
-* Assigns value to the variable, using a literal value. The literals used above are `11`, `-123`, and `+52`.
+* Assigns value to the variable, using a literal value. The literals used above are `11`, `-123`, and `+61427`.
 
-`long` literals are similar to `byte`, `short` and `int` literals but they have an extra piece: a trailing `l` (that is a lowercase `L`, for `long`). So, while `12` is a `byte`, `short` or `int` literal, `12l` is a `long` literal.
+`long` literals are similar to `byte`, `short` and `int` literals but they have an extra piece: a trailing `L` (uppercase or lowercase). So, while `12` is a `byte`, `short` or `int` literal, `12l` and `12L` are `long` literals.
 
 ```java
 long d = 25l;
@@ -443,7 +445,7 @@ Integer literals (`byte`, `short`, `int` and `long` literals, that is) that star
 
 Integer literals that start with `0x` are **hexadecimal** literals, encoded in base `16` (using the digits `0-9` and then the letters `a-f`).
 
-You don't need to understand how these other ways to write integer literals work right now, but if you're curious you can read up on octal values [here](https://en.wikipedia.org/wiki/Octal) and hexedecimal values [here](https://simple.wikipedia.org/wiki/Hexadecimal).
+You can read up on octal values [here](https://en.wikipedia.org/wiki/Octal) and hexedecimal values [here](https://simple.wikipedia.org/wiki/Hexadecimal) if desired.
 
 ### Floating Point Literals
 
@@ -508,13 +510,16 @@ The five basic arithmetic operations in Java are `+`, `-`, `*`, `/`, and `%`. Th
 * `x / y` is the quotient of `x` divided by `y`
 * `x % y` is the remainder of `x` divided by `y`
 
-The order in which arithmetic operations are executed can be determined the same way it is in mathematics, using **PEMDAS** (if you're not sure what **PEMDAS** is, use those search engine skills). You may have noticed that there isn't an operator for exponentiation; it is done with a **method** from the `Math` class, which we will discuss later.
+The order in which arithmetic operations are executed can be determined the same way it is in mathematics, using **PEMDAS** (if you're not sure what **PEMDAS** is, use those search engine skills). You may have noticed that there isn't an operator for exponentiation; it is done with a **method** from the `Math` class, which we will discuss later. The remainder `%` operator has the same precedence as multiplication `*` and division `/`. If multiple arithmetic operators have the same precedence, they are performed from left to right.
 
 <a name="q10"></a>**[EXERCISE 10](#a10)**: Assume `x` and `y` are `int` variables with respective values `5` and `3`. What are the results of the following expressions:
 
 * `x + y * 5`
 * `x + (y * 5)`
 * `(x + y) * 5`
+* `y % x`
+* `y % x * y`
+* `y % (x * y)`
 
 ## "Shortcut" Operators
 
@@ -637,7 +642,7 @@ class MyClass
 
 The built-in operations in Java result in data whose type depends on the types of the inputs. In the snippet above, `a * b` is an `int` because `a` and `b` are both `int`s. Similarly, `x * y` is a `float` because `x` and `y` are both `float`s.
 
-But what happens when you mix data types in an operation? What if, in the snippet above, the operation `x * a` was done to mulitiply a `float` with an `int`? Integer multiplication cannot be done with floating point data, nor can floating point multiplication be done with integer data. But, if you were to use the expression `x * a`, you would get neither a syntax error nor a run error.
+But what happens when you mix data types in an operation? What if, in the snippet above, the operation `x * a` was done to mulitiply a `float` with an `int`? Integer multiplication cannot be done with floating point data, nor can floating point multiplication be done with integer data. But, if you were to use the expression `x * a`, you would get neither a syntax error nor a runtime error.
 
 When the built-in arithmetic operations are used with integer and floating point operands, the integer operands are implicitly converted to floating point form. This might make sense intuitively; any integer can also be represented as a floating point number, but the converse is not true. For example, `1` could be represented as `1.0f`, but `2.5f` cannot be written in integer form because it is not an integer.
 
@@ -652,7 +657,9 @@ int y = 3;
 int z = (int) (x * y);
 ```
 
-Most of the arithmetic operators result in an output that is approximately the same with different operand types. For instance, the output of `2.0f * 3.0f` is numerically approximately equal to `2 * 3` (though the results are encoded differently).
+## Integer Division, Floating Point Division and Loss of Precision
+
+Most of the arithmetic operations result in an output that is approximately the same with different operand types. For instance, the output of `2.0f * 3.0f` is numerically approximately equal to `2 * 3` (though the results are encoded differently).
 
 This is not true for the division operation! Integer division (i.e. division performed with `byte`, `short`, `int`, and `long` data) results in an integer output (rounded down). For instance, `5 / 2` results in `2`, not `2.5`. If you wish to divide `5` by `2` using floating point division, you must make at least one of the operands a floating point type. For instance, `5.0 / 2` would perform floating point division, because the numerator `5.0` is a `double` literal. With variables, performing floating point division on integer data looks like this:
 
@@ -663,7 +670,7 @@ int y = 2;
 // integer division
 int z1 = x / y;
 
-// floating point division
+// float cast, then floatinf point division
 float z2 = (float) x / y;
 
 // integer division, then float cast
@@ -708,7 +715,7 @@ You can see documentation for the `Math` class and all of its contained utilitie
 
 In the documentation linked above, you can find every constant and method in the `Math` class, and descriptions of what those constants and methods do. Documentation like this is available for all built-in packages in the [Java 8 API](https://docs.oracle.com/javase/8/docs/api/).
 
-As a programmer, one of your most valuable skills is reading and interpreting documentation (and StackOverflow posts) in order to learn how to use tools and how to debug programs using those tools.
+As a programmer, one of your most valuable skills is finding, reading and interpreting documentation (and StackOverflow posts) in order to learn how to use tools and how to debug programs using those tools.
 
 Members of a class can be accessed with the **access operator** (a dot following the class name). Member accesses are made in the form `<ClassIdentifier>.<memberIdentifier>`. For instance, the `PI` constant is a member of the `Math` class, so its value can be accessed with `Math.PI`. Similarly, the `pow` function is a member of the `Math` class, so it can be accessed with `Math.pow`. `Math.pow` is a function which takes two inputs and raises the first to the power of the second. For instance, `Math.pow(2, 3)` returns the result of raising `2` to the power `3`. We will discuss functions calls in a future lab, but for now note that when a function takes inputs, those inputs are given in a comma-separated list, in parenthesis, after the function itself.
 
@@ -733,7 +740,7 @@ class MyClass
 
 ### <a name="a1"></a>**[EXERCISE 1](#q1)** 
 
-The short answer is "Nothing", in that nothing appears to happen from the user perspective when running the program. The longer answer is that, as stated above, a class called `MyClass` is defined, so a small amount of memory is set aside and the class definition is written in that memory, but these all happen under the hood in Java. Feel free to check out [this lab](https://github.com/arewhyaeenn/COMP_232_LAB_1_2_C_TUTORIAL) (for sophomore level students) if you want to learn a bit about memory allocation in C (as well as the basics if C). 
+The short answer is "Nothing", in that nothing appears to happen from the user perspective when running the program. The longer answer is that, as stated above, a class called `MyClass` is defined, so a small amount of memory is set aside and the class definition is written in that memory, but these all happen under the hood in Java. As far as output is concerned, this program does nothing.
 
 ### <a name="a2"></a>**[EXERCISE 2](#q2)**
 
@@ -757,7 +764,7 @@ Because comments are ignored by the compiler, they **do not** affect the perform
 
 ### <a name="a5"></a>**[EXERCISE 5](#q5)**
 
-The program does precisely what the comments state it does: it declared an `int` variable called `myNumber`, assigns `myNumber`'s value to `1`, prints that value `1`, reassigns `myNumber`'s value to `2`, and then prints this new value `2`.
+The program does precisely what the comments state it does: it declares an `int` variable called `myNumber`, assigns `myNumber`'s value to `1`, prints that value `1`, reassigns `myNumber`'s value to `2`, and then prints this new value `2`.
 
 ### <a name="a6"></a>**[EXERCISE 6](#q6)**
 
@@ -782,6 +789,9 @@ If `x` is an `int` with value `5` and `y` is an `int` with value `3` then:
 * `x + y * 5` evaluates to an `int` with value `20`.
 * `x + (y * 5)` evaluates to an `int` with value `20` as well; the parenthesis are redundant, because multiplication happens before addition without them.
 * `(x + y) * 5` evaluates to an `int` with value `40`; the parenthesis cause the addition to be evaluated before the multiplication.
+* `y % x` evaluates to an `int` with value `3` (the remainder when `3` is divided by `5`).
+* `y % x * y` evaluates to `9`; the `%` and `*` have the same precedence, so they are performed from left to right, so the `%` results in a `3` like before, which is then multiplied by `y`'s value, `3`.
+* `y % (x * y)` evaluates to `3`. The parenthesis ensure that the multiplication is carried out first, resulting in `15`. The remainder when `3` is divided by `15` is `3`.
 
 ### <a name="a11"></a>**[EXERCISE 11](#q11)**
 
@@ -967,7 +977,7 @@ Process finished with exit code 0
 
 ## Task 3
 
-In the previous task, you have an example of use of the `Scanner` class from the `java.util` package to get user input in the form of a double. This `Scanner` class can be used to get other types of data from the console too! Find the API for the Java 8 `Scanner` and read through it to find the appropriate methods to use (instead of `nextDouble()`) to get the appropriate data from the user in the task below.
+In task 2, you have an example of use of the `Scanner` class from the `java.util` package to get user input in the form of a double. This `Scanner` class can be used to get other types of data from the console too! Find the API for the Java 8 `Scanner` (using your favorite search engine) and read through it to find the appropriate methods to use (instead of `nextDouble()`) to get the appropriate data from the user in the task below.
 
 Note that you can use the same `Scanner` for multiple inputs. The line `Scanner scan = new Scanner( System.in );` **constructs** (i.e. sets up) a new `Scanner`, and this setup only needs to happen once. Afterward, the `Scanner` named `scan` can be used to get as many inputs as desired.
 
@@ -1008,13 +1018,33 @@ Process finished with exit code 0
 
 ```
 
-## Task 4 (Bonus)
+## Task 4
+
+Write a program which:
+
+* prompts the user for 3 integers
+* calculates and prints their average
+
+Be careful not to use integer divsion! This will result in a loss of precision!
+
+### Task 4 Sample Run
+
+```
+Enter an integer : 5
+Enter another integer : 5
+Enter a final integer : 6
+
+The average of 5, 5 and 6 is 5.333333333333333
+```
+
+## Task 5
 
 Write a program which prompts the user for an integer number of seconds.
 
 The program should then print out the corresponding number of hours, remaining minutes, and remaining seconds.
 
-### Task 4 Sample Run
+### Task 5 Sample Run
+
 ```
 Enter a number of seconds : 3661
 3661 seconds is equivalent to 1 hours, 1 minutes, and 1 seconds.
@@ -1022,23 +1052,39 @@ Enter a number of seconds : 3661
 Process finished with exit code 0
 ```
 
-## Task 5 (Bonus)
+## Task 6
 
-Write a program which generates a random integer from `1` to `100` (inclusive), then prompts the user to guess the number. It should then print a message telling the user whether or not their guess is correct. This will require an `if` statement, which we have not yet covered; you will need to do some research.
+Write a program which prompts the user for a temperature in Fahrenheit and then prints out the equivalent temperature in Celcius.
 
-## Task 6 (Bonus)
+### Task 6 Sample Run
+
+```
+Enter a temperature in Fahrenheit : 32.9
+32.9 degrees Fahrenheit is equivalent to 0.4999999999999992 degrees Celcius.
+```
+
+## Task 7 (Optional)
+
+Write a program which generates a random integer from `1` to `100` (inclusive), then prompts the user to guess the number. It should then print a message telling the user whether or not their guess is correct. This will require an `if` statement, use of the `Random` class and the `==` equality operator, none of which have been covered yet; you will need to do some research.
+
+## Task 8 (Optional)
 
 The following task requires functionality that has not been covered in this lecture. You will need to do some research to determine how to do it.
 
-Create a file in the project directory called `input.txt`. Open `input.txt`, and write some stuff on the first line. Do not add any additional lines.
+Create a file in your lab folder called `input.txt`. Open `input.txt`, and write some stuff on the first line. Do not add any additional lines.
 
-Write a program which opens `input.txt`, reads its first line, and writes that line to a new file (also in the project directory) called `output.txt`.
+Write a program which opens `input.txt`, reads its first line, and prints that line to the console.
 
-## Task 7 (Bonus)
+This will require some research. Here is a brief overview; you'll need to google and find soem examples to help you figure out exactly how to do this:
 
-Edit your program from task 6. Instead of copying a single line from `input.txt` to `output.txt`, it should read any number of lines (one at a time) until it has read every line in `input.txt`.
+* Open your input file with the `File` class.
+* Create a new `Scanner` (like we did to get input from the console). Instead of `System.in`, use your opened file as its input.
+* Use the appropriate method from the `Scanner` class to read the first line of the file into a `String` variable.
+* Print your `String` variable.
 
-You should use a `while` loop, and the `Scanner` class's `hasNext` method. Both of these will require some additional research on your part.
+## Task 9 (Optional)
 
-Your program should work independent of contents of `input.txt`; changes to `input.txt` should not require you to change your program in order for it to function as specified.
+Edit your program from task 8 as follows: Instead of just writing a single line, print **all** lines from `input.txt` to the console.
+
+Your program should work if `input.txt` has no lines, one line, or more than `input.txt` one line. You'll need to research the `while` loop (which we'll cover later in the semester) and the `Scanner`'s `hasNext` method.
 
