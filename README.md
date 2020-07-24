@@ -1,4 +1,4 @@
-# COMP 150 Lab 2 - Java Fundamentals
+# Object-Oriented Programming - Java Fundamentals
 
 In this lab, you will learn:
 
