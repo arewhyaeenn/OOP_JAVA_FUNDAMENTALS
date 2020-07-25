@@ -736,7 +736,7 @@ class MyClass
 }
 ```
 
-## Answers to Exercises
+## Answers to Selected Exercises
 
 ### <a name="a1"></a>**[EXERCISE 1](#q1)** 
 
