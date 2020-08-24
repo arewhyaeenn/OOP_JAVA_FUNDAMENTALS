@@ -1073,7 +1073,7 @@ Create a file in your lab folder called `input.txt`. Open `input.txt`, and write
 
 Write a program which opens `input.txt`, reads its first line, and prints that line to the console.
 
-This will require some research. Here is a brief overview; you'll need to google and find soem examples to help you figure out exactly how to do this:
+This will require some research. Here is a brief overview; you'll need to google and find some examples to help you figure out exactly how to do this:
 
 * Open your input file with the `File` class.
 * Create a new `Scanner` (like we did to get input from the console). Instead of `System.in`, use your opened file as its input.
