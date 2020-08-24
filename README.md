@@ -883,8 +883,6 @@ class MyClass
 
 # Lab Assignment
 
-The lab assignment below consists of a sequence of tasks. In each task, you will create or complete a program to meet specifications. Your submissions should consist of the completed programs (the .java files) and documentation of each program, describing what the program does, providing test runs (i.e. the console, copy-pasted) demonstrating its functionality, and commenting on any known issues with the program that you haven't fixed. Your documentation should be in a markdown file (you should learn markdown, check out the [MacDown](https://macdown.uranusjr.com) editor if you're on MacOS) or a text file if you want me to think you're lazy.
-
 ## Task 1
 
 Use the program below as a starting point. Below each commented instruction, write a corresponding statement that does what the comment describes. After each step, you should print out a message stating any variables that have changed with their new values.
