@@ -42,7 +42,7 @@ class MyClass
 }
 ```
 
-Every Java program has exactly one **main method**. If a program has multiple classes, there might be more than one main method in the classes, but the program will only run one of the main methods (the one from the class on which javac was run).
+Every Java program has exactly one **main method**. If a program has multiple classes, there might be more than one main method in the classes, but the program will only run one of the main methods (the one from the class on which `java` was run).
 
 Any main method consists of the header `public static void main(String[] args)`, followed by curly braces `{}`. The contents of the curly braces are the **body** of the main method. `main` is an identifier reserved for the main method. `public`, `static`, and `void` are all keywords in Java, and we will discuss their individual uses and meanings in future labs. We will also discuss the meaning of `String[] args` in a future lab.
 
