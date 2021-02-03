@@ -394,7 +394,7 @@ There are two remaining primitive data types:
 * `char` :
 	* character data, stored in 16 bits (2 bytes)
 	* stores a single character
-	* can store any character in Unicode, a convention for character storage. You can learn more [here](https://docs.oracle.com/javase/6/docs/api/java/lang/Character.html) if desired.
+	* can store any unsigned 16-bit character in Unicode, a convention for character storage. You can learn more [here](https://docs.oracle.com/javase/6/docs/api/java/lang/Character.html) if desired.
 * `boolean` :
 	* boolean data is stored in a single bit (1/8 of a byte)
 	* stores either `true` or `false` (i.e. 1 or 0, a bit); these are the only possible values
